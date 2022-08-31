@@ -16,7 +16,7 @@ public class Main {
 		File file = new File("src/main/resources/Profile.txt");
 
 		FileReader f = new FileReader();
-		f.getDataFromFile(file);
+		System.out.println(f.getDataFromFile(file).toString());
 
 	     //   File file = new File("src/main/resources/Profile.txt");
 	     

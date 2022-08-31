@@ -15,11 +15,11 @@ public class FileReader {
 
         try {
 
-            BufferedReader my_Reader = new BufferedReader(new java.io.FileReader(file));
+            BufferedReader my_Reader = new BufferedReader(new java.io.FileReader(new File("src/main/resources/Profile.txt")));
             String line = "";
 
             while ((line = my_Reader.readLine()) != null) {
-                str.append(line + "\n");
+                str.append(line+" ");
             }
 
             my_Reader.close();
@@ -34,13 +34,8 @@ public class FileReader {
 
         String[] parts = singleString.split("\n");
 
-        String[] parts0 = parts[0].split(": ");
-        String[] parts1 = parts[1].split(": ");
-        String[] parts2 = parts[2].split(": ");
-        String[] parts3 = parts[3].split(": ");
-
-        Profile p = new Profile(parts0[1], Integer.parseInt(parts1[1]), parts2[1], Long.parseLong(parts3[1]));
-
+        String[] pa = parts[0].split(" ");
+        Profile p = new Profile(pa[1], Integer.parseInt(pa[3]), pa[5], Long.parseLong(pa[7]));
         return p;
     }
 }

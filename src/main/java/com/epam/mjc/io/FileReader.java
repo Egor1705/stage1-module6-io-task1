@@ -12,30 +12,37 @@ public class FileReader {
 
 
         StringBuilder str = new StringBuilder();
+        String line;
 
-        try {
 
-            BufferedReader my_Reader = new BufferedReader(new java.io.FileReader(new File("src/main/resources/Profile.txt")));
-            String line = "";
+        try( BufferedReader my_Reader = new BufferedReader(new java.io.FileReader(file))) {
+
+
+
 
             while ((line = my_Reader.readLine()) != null) {
-                str.append(line+" ");
+                str.append(line + "\n");
             }
 
-            my_Reader.close();
+
         } catch (FileNotFoundException e) {
-            System.out.println("File not exists or insufficient rights");
+
             e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("An exception occured while reading the file");
+
             e.printStackTrace();
         }
         String singleString = str.toString();
 
         String[] parts = singleString.split("\n");
 
-        String[] pa = parts[0].split(" ");
-        Profile p = new Profile(pa[1], Integer.parseInt(pa[3]), pa[5], Long.parseLong(pa[7]));
-        return p;
+        String[] parts0 = parts[0].split(": ");
+        String[] parts1 = parts[1].split(": ");
+        String[] parts2 = parts[2].split(": ");
+        String[] parts3 = parts[3].split(": ");
+
+
+
+        return new Profile(parts0[1], Integer.parseInt(parts1[1]), parts2[1], Long.parseLong(parts3[1]));
     }
 }
